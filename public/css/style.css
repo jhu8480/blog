@@ -61,6 +61,10 @@ body {
 
 .signup-form-wrapper form input {
   width: 100%;
+  background-color: rgba(45, 52, 57, 0.9);
+  border: 0;
+  border-bottom: 2px solid var(--color-brand--2);
+  color:rgb(214, 222, 224);
 }
 
 .signup-form-wrapper form input:focus {

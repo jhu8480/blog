@@ -12,7 +12,7 @@ async function formHandler() {
     if (response.ok) {
       document.location.replace('/');
     } else {
-      alert('Failed to log in.');
+      alert('Failed to log in. Please try again');
     }
   }
 }

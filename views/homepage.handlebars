@@ -1,20 +1,5 @@
 {{#if loggedIn}}
-  <p>Now You are loggedIn</p>
-  <button id="logout-btn">Log out</button>
-  <script src="/js/logout.js"></script>
+  {{> home}}
 {{else}}
-  <div class="container">
-    <div class="signup-form-wrapper">
-      <h2>Please login</h2>
-      <form>
-        <label for="email-input">Email</label><br>
-        <input type="text" id="email-input" required><br>
-        <label for="password-input">Password</label><br>
-        <input type="password" id="password-input" required><br>
-        <button id="signin-button" type="submit">Submit</button>
-        <p>Don't have an account? <a href="#">Sign up</a></p>
-      </form>
-    </div>
-    <script src="/js/login.js"></script>
-  </div>
+  {{> login-form}}
 {{/if}}
