@@ -1,3 +1,16 @@
-  <p>Now You are loggedIn</p>
-  <button id="logout-btn">Log out</button>
-  <script src="/js/logout.js"></script>
+  <div class="home-wrapper">
+    <p>Welcome! {{username}}. You are now logged in, your user id is: <span id="userid">{{userId}}</span>.</p>
+    <button id="write-new-blog">New blog</button>
+    <button id="logout-btn">Log out</button>
+    <div class="writing-blog hidden">
+      <label for="blog_title">Title:</label><br>
+      <input type="text" id="blog_title" maxlength="255"><br>
+      <label for="blog_body">Write blog:</label><br>
+      <textarea id="blog_body" cols="112" rows="15"></textarea><br>
+      <button id="post-btn">Post</button>
+      <button id="leave-btn">Leave</button>
+    </div>
+    <script src="/js/write-blog.js"></script>
+    <script src="/js/post-blog.js"></script>
+    <script src="/js/logout.js"></script>
+  </div>
