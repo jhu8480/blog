@@ -12,6 +12,7 @@ const sess = {
   secret: 'Super secret secret',
   resave: false,
   saveUninitialized: true,
+  cookie: { maxAge: 60 * 60 * 1000 }
 };
 app.use(session(sess));
 

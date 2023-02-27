@@ -1,11 +1,23 @@
 const router = require('express').Router();
+const { User, Blog, Comment} = require('./../models/index');
 
-router.get('/', (req, res) => {
+router.get('/', async (req, res) => {
   try {
+    const blogData = await Blog.findAll({
+      include: [
+        {
+          model: User,
+          attributes: ['id', 'username', 'email']
+        }
+      ]
+    });
+    const blogArray = blogData.map(blog => blog.get({plain: true}));
+
     res.render('homepage', {
       loggedIn: req.session.loggedIn,
       userId: req.session.userId,
-      username: req.session.username
+      username: req.session.username,
+      blogArray: blogArray.reverse()
     });
   } catch(e) {
     res.status(500).json(e);

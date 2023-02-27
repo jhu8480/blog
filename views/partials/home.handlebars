@@ -1,6 +1,6 @@
   <div class="home-wrapper">
-    <p>Welcome! {{username}}. You are now logged in, your user id is: <span id="userid">{{userId}}</span>.</p>
-    <button id="write-new-blog">New blog</button>
+    <p class="welcome">Welcome! {{username}}. You are now logged in, your user id is: <span id="userid">{{userId}}</span>.</p>
+    <button id="write-new-blog">Write a new article</button>
     <button id="logout-btn">Log out</button>
     <div class="writing-blog hidden">
       <label for="blog_title">Title:</label><br>
@@ -10,6 +10,18 @@
       <button id="post-btn">Post</button>
       <button id="leave-btn">Leave</button>
     </div>
+    {{#each blogArray as |blog|}}
+      <div class="blog-post-wrapper">
+        <h5>{{blog.blog_title}}</h5>
+        <h6>Authored by: {{blog.user.username}} User ID: <span id="authorid">{{blog.user.id}}</span></h6>
+        <h6>Article ID: <span id="articleid">{{blog.id}}</span></h6>
+        <p>{{blog.blog_body}}</p>
+        <h6>Posted at: {{blog.createdAt}}</h6>
+        <h6>Last update: {{blog.updatedAt}}</h6>
+        <button class="write-a-comment">Write a comment</button>
+        <button>View comments</button>
+      </div>
+    {{/each}}
     <script src="/js/write-blog.js"></script>
     <script src="/js/post-blog.js"></script>
     <script src="/js/logout.js"></script>

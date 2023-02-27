@@ -1,4 +1,5 @@
 const signupBtn = document.querySelector('#signup-button');
+const gobackBtn = document.querySelector('#go-back-btn');
 
 signupBtn.addEventListener('click', async (e) => {
   e.preventDefault();
@@ -25,7 +26,7 @@ signupBtn.addEventListener('click', async (e) => {
   const response = await data.json();
   if(response.status === 'success') {
     const formWrapper = document.querySelector('.signup-form-wrapper');
-    formWrapper.innerHTML = '<p>Thank you! You have been successfully signed up. You will be redirected to homepage in three seconds.If the reload does not work, please click here <a href="/" style="color: var(--color-brand--1)">Home</a></p>';
+    formWrapper.innerHTML = '<p>Thank you! You have been successfully signed up. You will be redirected to homepage in three seconds. If the reload does not work, please click here <a href="/" style="color: var(--color-brand--1)">Home</a></p>';
     setTimeout(() => {
       document.location.replace('/');
     }, 3000);
@@ -33,3 +34,8 @@ signupBtn.addEventListener('click', async (e) => {
     alert('Something went wrong! Please try again')
   }
 });
+
+gobackBtn.addEventListener('click', (e) => {
+  e.preventDefault();
+  document.location.replace('/');
+})
