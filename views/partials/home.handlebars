@@ -14,15 +14,26 @@
       <div class="blog-post-wrapper">
         <h5>{{blog.blog_title}}</h5>
         <h6>Authored by: {{blog.user.username}} User ID: <span id="authorid">{{blog.user.id}}</span></h6>
-        <h6>Article ID: <span id="articleid">{{blog.id}}</span></h6>
+        <h6>Article ID: <span class="articleid">{{blog.id}}</span></h6>
         <p>{{blog.blog_body}}</p>
         <h6>Posted at: {{blog.createdAt}}</h6>
         <h6>Last update: {{blog.updatedAt}}</h6>
         <button class="write-a-comment">Write a comment</button>
-        <button>View comments</button>
+        <button class="view-comments">View comments</button>
+        <div class="comments-wrapper">
+          <div class="comment-input-area hidden">
+            <label for="comment_title">Comment Title</label><br>
+            <input type="text" class="comment_title"><br>
+            <label for="article_comment">Comment</label><br>
+            <input type="text" class="article_comment"><br>
+            <button class="add-comment">Add comment</button>
+            <button class="give-up-comment">Cancel</button>
+          </div>
+        </div>
       </div>
     {{/each}}
     <script src="/js/write-blog.js"></script>
     <script src="/js/post-blog.js"></script>
+    <script src="/js/comments.js"></script>
     <script src="/js/logout.js"></script>
   </div>

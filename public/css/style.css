@@ -200,3 +200,18 @@ body {
 .write-a-comment {
   margin-top: 10px;
 }
+
+.comments-wrapper {
+  padding: 10px;
+  background-color: var(--color-dark--2);
+  margin: 10px 0;
+}
+.comments-wrapper input{
+  width: 50%;
+}
+.comments-wrapper input:focus {
+  outline: none;
+}
+.add-comment {
+  margin-top: 5px;
+}
