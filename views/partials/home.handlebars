@@ -15,7 +15,9 @@
         <h5>{{blog.blog_title}}</h5>
         <h6>Authored by: {{blog.user.username}} User ID: <span id="authorid">{{blog.user.id}}</span></h6>
         <h6>Article ID: <span class="articleid">{{blog.id}}</span></h6>
-        <p>{{blog.blog_body}}</p>
+        <div class="linktoarticle">
+          <a href="/blog/{{blog.id}}" target="">Check this article</a>
+        </div>
         <h6>Posted at: {{blog.createdAt}}</h6>
         <h6>Last update: {{blog.updatedAt}}</h6>
         <button class="write-a-comment">Write a comment</button>
@@ -26,7 +28,7 @@
             <input type="text" class="comment_title"><br>
             <label for="article_comment">Comment</label><br>
             <input type="text" class="article_comment"><br>
-            <button class="add-comment">Add comment</button>
+            <button class="add-comment">Save</button>
             <button class="give-up-comment">Cancel</button>
           </div>
         </div>

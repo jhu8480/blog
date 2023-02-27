@@ -7,12 +7,15 @@ const sequelize = require('./config/connection');
 const helper = require('./utils/helper');
 
 const app = express();
-
+const SequelizeStore = require('connect-session-sequelize')(session.Store);
 const sess = {
   secret: 'Super secret secret',
   resave: false,
   saveUninitialized: true,
-  cookie: { maxAge: 60 * 60 * 1000 }
+  cookie: { maxAge: 60 * 60 * 1000 },
+  store: new SequelizeStore({
+    db: sequelize
+  })
 };
 app.use(session(sess));
 

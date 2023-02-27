@@ -1,4 +1,5 @@
 const router = require('express').Router();
+const auth = require('./../utils/auth');
 const { User, Blog, Comment} = require('./../models/index');
 
 router.get('/', async (req, res) => {
@@ -19,6 +20,23 @@ router.get('/', async (req, res) => {
       username: req.session.username,
       blogArray: blogArray.reverse()
     });
+  } catch(e) {
+    res.status(500).json(e);
+  }
+});
+
+router.get('/blog/:id', auth, async (req, res) => {
+  try {
+    const response = await Blog.findByPk(req.params.id, {
+      include: [{model: User, attributes: ['id', 'username', 'email']}]
+    });
+    const blog = response.get({plain: true});
+    res.render('article', {
+    loggedIn: req.session.loggedIn,
+    userId: req.session.userId,
+    username: req.session.username,
+    blog
+  });
   } catch(e) {
     res.status(500).json(e);
   }

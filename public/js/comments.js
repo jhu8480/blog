@@ -3,6 +3,7 @@ const addCommentButtons = document.querySelectorAll('.add-comment');
 const cancelButtons = document.querySelectorAll('.give-up-comment');
 const commentTitleInput = document.querySelectorAll('.comment_title');
 const commentBodyInput = document.querySelectorAll('.article_comment');
+const anchors = document.querySelectorAll('a[target]');
 
 writeCommentBtn.forEach((button) => {
   addEventListener('click', (e) => {
@@ -61,10 +62,18 @@ addCommentButtons.forEach((button) => {
       const response = await data.json();
       if (response.status === 'success') {
         e.target.parentElement.classList.add('hidden');
+        e.target.parentElement.querySelector('.comment_title').value = '';
+        e.target.parentElement.querySelector('.article_comment').value = '';
       }
     } else {
       alert('A comment must include a title and a body. Try again!')
     }
   });
+});
+
+anchors.forEach(a => {
+  a.addEventListener('click', (e) => {
+    e.stopPropagation();
+  })
 });
 
