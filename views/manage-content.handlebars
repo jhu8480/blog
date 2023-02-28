@@ -1,18 +1,29 @@
 <div class="manage-content-wrapper">
   <button class="goback">Go Back</button>
   <h3>Username: {{userInfo.username}}</h3>
-  <h3>User ID: {{userInfo.id}}</h3>
+  <h3>User ID: <span id="user-id-container">{{userInfo.id}}</span></h3>
   <h3>Email: {{userInfo.email}}</h3>
+
+  <div class="writing-blog update-block hidden">
+      <label>Blog ID: <span id="blog-id-container"></span></label><br>
+      <label for="blog_title">New Title:</label><br>
+      <input type="text" id="blog_title" maxlength="255"><br>
+      <label for="blog_body">New Content:</label><br>
+      <textarea id="blog_body" cols="112" rows="15"></textarea><br>
+      <button id="post-btn">Post</button>
+      <button id="leave-btn">Leave</button>
+    </div>
+
   <h4>Blog List</h4>
   <ul class="blog-list">
     {{#each blogArray as |blog|}}
-    <li>{{blog.blog_title}} ID:<span class="blog-id">{{blog.id}}</span> <button class="update-blog">Update</button><button class="delete-blog">Delete</button></li>
+    <li>Title: {{blog.blog_title}} / ID:<span class="blog-id">{{blog.id}}</span> <button class="update-blog">Update</button><button class="delete-blog">Delete</button></li>
     {{/each}}
   </ul>
   <h4>Comments List</h4>
   <ul class="comment-list">
     {{#each commentArray as |comment|}}
-    <li>Comment Title: {{comment.comment_title}} -- Comment: {{comment.comment_body}} -- Article: {{comment.blog.blog_title}} Comment ID:<span class="comment-id">{{comment.id}}</span> Blog ID:<span class="comment_blog_id">{{comment.blog.id}}</span> <button class="update-comment">Update</button><button class="delete-comment">Delete</button></li>
+    <li>Comment Title: {{comment.comment_title}} / Comment: {{comment.comment_body}} / Article: {{comment.blog.blog_title}} / Comment ID:<span class="comment-id">{{comment.id}}</span> / Blog ID:<span class="comment_blog_id">{{comment.blog.id}}</span> <button class="update-comment">Update</button><button class="delete-comment">Delete</button></li>
     {{/each}}
   </ul>
   <script src="/js/manage-content-page.js"></script>

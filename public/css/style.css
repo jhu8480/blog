@@ -356,3 +356,16 @@ body {
   background-color: orangered;
   float: right;
 }
+
+.update-block {
+  margin-bottom: 10px;
+  position: absolute;
+  top: 20%;
+  left: 10%;
+  border: 1px solid var(--color-brand--1);
+  border-radius: 20px;
+}
+
+.update-block  label{
+  color: var(--color-brand--1);
+}
