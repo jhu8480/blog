@@ -54,6 +54,14 @@ updateBlogBtn.forEach(button => {
     document.querySelector('.update-block').classList.remove('hidden');
     blogIdToUpdate = e.target.parentElement.querySelector('.blog-id').innerText;
     document.getElementById('blog-id-container').innerText = blogIdToUpdate;
+    const data = await fetch(`/api/blog/article/${blogIdToUpdate}`, {
+      method: 'GET'
+    });
+    const response = await data.json();
+    if (response.blog_title && response.blog_body) {
+      document.getElementById('blog_title').value = response.blog_title;
+      document.getElementById('blog_body').value = response.blog_body;
+    }
   });
 });
 
