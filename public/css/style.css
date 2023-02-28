@@ -307,3 +307,52 @@ body {
 .comment-div h6 {
   font-size: 0.6rem;
 }
+
+#manage-content {
+  margin-left: 10px;
+}
+
+.manage-content-wrapper {
+  padding: 20px;
+}
+
+.manage-content-wrapper ul {
+  list-style-type: none;
+}
+
+.manage-content-wrapper h3 {
+  color: var(--color-brand--1);
+  font-size: 0.9rem;
+  font-weight: 400;
+}
+
+.manage-content-wrapper button {
+  background-color: var(--color-brand--2);
+  padding: 5px;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  margin-bottom: 10px;
+}
+
+.manage-content-wrapper h4 {
+  color: var(--color-brand--2);
+  font-weight: 300;
+}
+
+.manage-content-wrapper ul li {
+  border: 1px solid var(--color-brand--1);
+  border-radius: 5px;
+  margin: 8px 0;
+  color: var(--color-light--2);
+  padding: 5px;
+  background-color: #2d3439;
+  font-size: 0.7rem;
+}
+
+.manage-content-wrapper ul li button {
+  padding: 2px;
+  font-size: 0.5rem;
+  background-color: orangered;
+  float: right;
+}

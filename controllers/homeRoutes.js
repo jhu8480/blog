@@ -10,7 +10,8 @@ router.get('/', async (req, res) => {
           model: User,
           attributes: ['id', 'username', 'email']
         }
-      ]
+      ],
+      order: [['updatedAt', 'ASC']]
     });
     const blogArray = blogData.map(blog => blog.get({plain: true}));
 
@@ -37,6 +38,33 @@ router.get('/blog/:id', auth, async (req, res) => {
     username: req.session.username,
     blog
   });
+  } catch(e) {
+    res.status(500).json(e);
+  }
+});
+
+router.get('/managecontent/:userid', auth, async (req, res) => {
+  try {
+    const blogData = await Blog.findAll({
+      where: {user_id: req.params.userid},
+      include: [{model: User}]
+    });
+    const blogArray = blogData.map(data => data.get({plain: true})).reverse();
+    
+    const userData = await User.findByPk(req.params.userid);
+    const userInfo = userData.get({plain: true});
+
+    const commentData = await Comment.findAll({where: {user_id: req.params.userid}, include: [{model: Blog}]});
+    const commentArray = commentData.map(c => c.get({plain: true}));
+
+    res.render('manage-content', {
+      loggedIn: req.session.loggedIn,
+      userId: req.session.userId,
+      username: req.session.username,
+      blogArray,
+      userInfo,
+      commentArray
+    });
   } catch(e) {
     res.status(500).json(e);
   }
