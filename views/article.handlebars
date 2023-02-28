@@ -1,7 +1,11 @@
 <div class="article-page-wrapper">
   <button id="go-back">Go Back</button>
   <h3>Title: {{blog.blog_title}}</h3>
-  <h6>Author: {{blog.user.username}}</h6>
-  <p>{{blog.blog_body}}</p>
+  <h6>Author: {{blog.user.username}} ID: {{blog.user.id}}</h6>
+  <div class="article">
+    <p>{{blog.blog_body}}</p>
+  </div>
+  <h6>Posted At: {{blog.createdAt}}</h6>
+  <h6>Upated At: {{blog.updatedAt}}</h6>
   <script src="/js/article-page.js"></script>
 </div>
