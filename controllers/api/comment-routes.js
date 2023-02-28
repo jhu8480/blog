@@ -1,6 +1,15 @@
 const router = require('express').Router();
 const {User, Blog, Comment} = require('../../models/index');
 
+router.get('/comment/:id', async (req, res) => {
+  try {
+    const response = await Comment.findByPk(req.params.id);
+    res.status(200).json(response);
+  } catch(e) {
+    res.status(500).json(e);
+  }
+})
+
 router.get('/:id', async (req, res) => {
   try {
     const response = await Comment.findAll({
@@ -27,17 +36,6 @@ router.post('/', async (req, res) => {
   }
 });
 
-router.put('/:id', async (req, res) => {
-  try {
-    const response = await Comment.update(req.body, {where: {id: req.params.id}});
-    res.status(200).json({
-      status: 'success',
-      updated: response
-    });
-  } catch(e) {
-    res.status(500).json(e);
-  }
-});
 
 router.put('/:id', async (req, res) => {
   try {

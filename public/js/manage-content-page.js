@@ -5,9 +5,22 @@ const updateBlogBtn = document.querySelectorAll('.update-blog');
 const updateCommentBtn = document.querySelectorAll('.update-comment');
 const leaveBtn = document.getElementById('leave-btn');
 const postBtn = document.getElementById('post-btn');
+
+const saveNewCommentBtn = document.getElementById('post-comment-btn');
+
 const userId = parseInt(document.getElementById('user-id-container').innerText);
+const updateCommentBlock = document.querySelector('.update-comment-block');
+const closeCommentBlockBtn = document.getElementById('close-btn');
+closeCommentBlockBtn.addEventListener('click', (e) => {
+  e.preventDefault();
+  e.stopPropagation();
+  updateCommentBlock.classList.add('hide');
+});
+
 
 let blogIdToUpdate;
+let commentIdToUpdate;
+let commentBlogIdToUpdate;
 
 postBtn.addEventListener('click', async (e) => {
   e.preventDefault();
@@ -83,10 +96,51 @@ deleteBlogBtn.forEach(button => {
 });
 
 updateCommentBtn.forEach(button => {
-  button.addEventListener('click', (e) => {
+  button.addEventListener('click', async (e) => {
     e.preventDefault();
     e.stopPropagation();
+    updateCommentBlock.classList.remove('hide');
+    commentIdToUpdate = parseInt(e.target.parentElement.querySelector('.comment-id').innerText);
+    document.getElementById('comment-id-container').innerText = commentIdToUpdate;
+    commentBlogIdToUpdate = parseInt(e.target.parentElement.querySelector('.comment_blog_id').innerText);
+    document.querySelector('.comment-blog-id-container').innerText = commentBlogIdToUpdate;
+    const data = await fetch(`/api/comments/comment/${commentIdToUpdate}`, {
+      method: 'GET'
+    });
+    const response = await data.json();
+    if (response) {
+      document.querySelector('#new-comment-title').value = response.comment_title;
+      document.querySelector('#new-comment-body').value = response.comment_body;
+    }
   });
+});
+
+saveNewCommentBtn.addEventListener('click', async (e) => {
+  e.preventDefault();
+  e.stopPropagation();
+  const newCommentTitle = document.getElementById('new-comment-title').value;
+  const newCommentBody = document.getElementById('new-comment-body').value;
+  const newObject = {
+    comment_title: newCommentTitle,
+    comment_body: newCommentBody,
+    user_id: userId,
+    blog_id: commentBlogIdToUpdate
+  }
+
+  console.log(newObject);
+
+  const data = await fetch(`/api/comments/${commentIdToUpdate}`, {
+    method: 'PUT',
+    body: JSON.stringify(newObject),
+    headers: { 'Content-Type': 'application/json' }
+  });
+  const response = await data.json();
+  if (response.status === 'success') {
+    document.querySelector('.update-comment-block').classList.add('hide');
+    document.location.reload();
+  } else {
+    alert('Fail to update, please try again');
+  }
 });
 
 deleteCommentBtn.forEach(button => {
