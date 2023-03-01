@@ -2,7 +2,7 @@
 
 ## Link to deployed app
 
-![link](https://stack-under-flow.herokuapp.com/)
+[link](https://stack-under-flow.herokuapp.com/)
 
 ## License
 
